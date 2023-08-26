@@ -4,6 +4,17 @@ void t(void);
 val_t val;
 
 /**
+ * nop - nop
+ * @line_num: line number
+ * @stack: stack of ints
+ */
+void nop(stack_t **stack, unsigned int line_num)
+{
+	(void)stack;
+	(void)line_num;
+}
+
+/**
  * exec_ops - find appriopriate funcs
  * @buf: line buffer
  * @ops: Array containing funcs
@@ -65,6 +76,7 @@ int main(int ac, char **av)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}};
 
 	val.err_code = 0;
