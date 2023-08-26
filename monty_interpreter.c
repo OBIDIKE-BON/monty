@@ -64,6 +64,7 @@ int main(int ac, char **av)
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
+		{"add", add},
 		{NULL, NULL}};
 
 	val.err_code = 0;
