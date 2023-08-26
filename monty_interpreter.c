@@ -4,6 +4,42 @@ void t(void);
 val_t val;
 
 /**
+ * pint - prints the last element of a list
+ * @line_num: line number
+ * @stack: stack of ints
+ */
+void pint(stack_t **stack, unsigned int line_num)
+{
+	stack_t *new;
+	if (val.chk != 0)
+	{
+		val.err_code = -1;
+		print_err("", "unknown instruction ", *stack, line_num, "push");
+	}
+
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		val.err_code = -1;
+		print_err("Error", "malloc failed", *stack, line_num, "");
+	}
+	new->n = val.data;
+
+	if (*stack == NULL)
+	{
+		new->next = NULL;
+		new->prev = NULL;
+		*stack = new;
+		return;
+	}
+
+	new->next = *stack;
+	(*stack)->prev = new;
+	(*stack)->prev = NULL;
+	*stack = new;
+}
+
+/**
  * push - adds data to stack
  * @line_num: line number
  * @stack: stack of ints
@@ -12,11 +48,17 @@ void push(stack_t **stack, unsigned int line_num)
 {
 	stack_t *new;
 	if (val.chk != 0)
-		print_err("", "unknown instruction ", *stack, line_num, "push");
+	{
+		val.err_code = -1;
+		print_err("", "usage:", *stack, line_num, "push integer");
+	}
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
+	{
+		val.err_code = -1;
 		print_err("Error", "malloc failed", *stack, line_num, "");
+	}
 	new->n = val.data;
 
 	if (*stack == NULL)
@@ -90,7 +132,7 @@ int main(int ac, char **av)
 	stack_t *stack = NULL;
 	instruction_t ops[] = {
 		{"push", push},
-		{"pall", pall},
+		{"pall", pint},
 		{"pint", pall},
 		{"pop", pall},
 		{"swap", pall},
@@ -99,8 +141,8 @@ int main(int ac, char **av)
 	val.err_code = 0;
 	val.buf = NULL;
 	val.fstream = NULL;
-	av[1] = "000.m";
-	ac = 2;
+	/* av[1] = "000.m";*/
+	/* ac = 2;*/
 	if (ac != 2)
 		print_err("USAGE", "monty file", stack, -1, "");
 	fstream = fopen(av[1], "r");
