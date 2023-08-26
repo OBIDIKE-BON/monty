@@ -1,6 +1,6 @@
 push 0
 push 1
-push
+push -1024 + push 123a
   push 3
                    pall    
 push 4

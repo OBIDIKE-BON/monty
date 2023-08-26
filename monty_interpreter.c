@@ -141,8 +141,6 @@ int main(int ac, char **av)
 	val.err_code = 0;
 	val.buf = NULL;
 	val.fstream = NULL;
-	/* av[1] = "000.m";*/
-	/* ac = 2;*/
 	if (ac != 2)
 		print_err("USAGE", "monty file", stack, -1, "", "");
 	fstream = fopen(av[1], "r");
