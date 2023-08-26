@@ -19,13 +19,13 @@ int safeStrToInt(char *str, int line, char *tok, stack_t *stack)
 	if (errno == ERANGE || num > INT_MAX || num < INT_MIN)
 	{
 		val.err_code = -1;
-		print_err("", "usage:", stack, line, tok, "number");
+		print_err("", "usage: ", stack, line, tok, " number");
 	}
 
 	if (endptr == str)
 	{
 		val.err_code = -1;
-		print_err("", "usage:", stack, line, tok, "number");
+		print_err("", "usage: ", stack, line, tok, " number");
 	}
 	/* Check for trailing characters */
 	while (*endptr != '\0')
@@ -33,7 +33,7 @@ int safeStrToInt(char *str, int line, char *tok, stack_t *stack)
 		if (!isspace(*endptr))
 		{
 		val.err_code = -1;
-		print_err("", "usage:", stack, line, tok, "number");
+		print_err("", "usage: ", stack, line, tok, " number");
 		}
 		endptr++;
 	}
@@ -59,9 +59,9 @@ void print_err(char *str, char *err, stack_t *stk, int ln, char *tok, char *t)
 	if (val.buf)
 		free(val.buf);
 	if (ln > 0)
-		fprintf(stderr, "L%d: %s %s %s\n", ln, err, tok, t);
+		fprintf(stderr, "L%d: %s%s%s\n", ln, err, tok, t);
 	else
-		fprintf(stderr, "%s: %s %s\n", str, err, tok);
+		fprintf(stderr, "%s: %s%s\n", str, err, tok);
 	exit(EXIT_FAILURE);
 }
 

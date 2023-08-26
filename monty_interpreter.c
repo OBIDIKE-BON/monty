@@ -52,14 +52,14 @@ void push(stack_t **stack, unsigned int line_num)
 	if (val.chk != 0)
 	{
 		val.err_code = -1;
-		print_err("", "usage:", *stack, line_num, "push integer", "");
+		print_err("", "usage: ", *stack, line_num, "push ", "integer");
 	}
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		val.err_code = -1;
-		print_err("Error", "malloc failed", *stack, line_num, "", "");
+		print_err("Error", "malloc", *stack, -1, " ", "failed");
 	}
 	new->n = val.data;
 
@@ -112,7 +112,7 @@ void exec_ops(char *buf, instruction_t ops[], int line_num, stack_t **stack)
 		if (ops[i].opcode == NULL)
 		{
 			val.err_code = -1;
-			print_err("", "unknown instruction", *stack, line_num, tok1, "");
+			print_err("", "unknown instruction ", *stack, line_num, tok1, "");
 		}
 	}
 }
@@ -148,7 +148,7 @@ int main(int ac, char **av)
 	fstream = fopen(av[1], "r");
 	if (!fstream)
 	{
-		print_err("Error", "Can't open file", stack, -1, av[1], "");
+		print_err("Error", "Can't open file ", stack, -1, av[1], "");
 	}
 	val.fstream = fstream;
 	while (getline(&buf, &n, fstream) != -1)
