@@ -13,14 +13,12 @@ void pint(stack_t **stack, unsigned int line_num)
 	stack_t *new;
 	if (val.chk != 0)
 	{
-		val.err_code = -1;
 		print_err("", "unknown instruction ", *stack, line_num, "push");
 	}
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		val.err_code = -1;
 		print_err("Error", "malloc failed", *stack, line_num, "");
 	}
 	new->n = val.data;
@@ -49,14 +47,12 @@ void push(stack_t **stack, unsigned int line_num)
 	stack_t *new;
 	if (val.chk != 0)
 	{
-		val.err_code = -1;
 		print_err("", "usage:", *stack, line_num, "push integer");
 	}
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		val.err_code = -1;
 		print_err("Error", "malloc failed", *stack, line_num, "");
 	}
 	new->n = val.data;
