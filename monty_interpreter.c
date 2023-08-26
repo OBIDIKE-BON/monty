@@ -94,7 +94,7 @@ void exec_ops(char *buf, instruction_t ops[], int line_num, stack_t **stack)
 	if (tok1)
 	{
 		tok2 = strtok(NULL, delim);
-		if (tok2 != NULL)
+		if (tok2 != NULL && tok1 == "push")
 		{
 			val.chk = safeStrToInt(tok2, line_num, tok1, *stack);
 		}
