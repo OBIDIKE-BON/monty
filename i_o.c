@@ -96,5 +96,8 @@ void pint(stack_t **stack, unsigned int line_num)
 	if (*stack)
 		printf("%d\n", (*stack)->n);
 	else
+	{
+		val.err_code = -1;
 		print_err("", "can't pint, stack empty", *stack, line_num, "", "");
+	}
 }
