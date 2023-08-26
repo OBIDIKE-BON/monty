@@ -57,10 +57,9 @@ void print_err(char *str, char *err, stack_t *stk, int ln, char *tok, char *t)
 		fprintf(stderr, "L%d: %s%s%s\n", ln, err, tok, t);
 	else
 		fprintf(stderr, "%s: %s%s\n", str, err, tok);
-	
 	free_stack(stk);
 	if (val.err_code == -1)
-		fclose(val.fstream);	
+		fclose(val.fstream);
 	if (val.buf)
 		free(val.buf);
 	exit(EXIT_FAILURE);
