@@ -56,11 +56,12 @@ typedef struct mData
 } val_t;
 extern val_t val;
 
+int safeStrToInt(char *str, int line, char *tok, stack_t *stack);
+void exec_ops(char *buf, instruction_t ops[], int line_num, stack_t **stack);
 void print_err(char *str, char *err, stack_t *stk, int ln, char *tok, char *t);
 void free_stack(stack_t *stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
-int safeStrToInt(char *str, int line, char *tok, stack_t *stack);
-void exec_ops(char *buf, instruction_t ops[], int line_num, stack_t **stack);
+void pint(stack_t **stack, unsigned int line_num);
 
 #endif /* MONTY_H */

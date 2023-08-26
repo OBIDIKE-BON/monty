@@ -32,8 +32,8 @@ int safeStrToInt(char *str, int line, char *tok, stack_t *stack)
 	{
 		if (!isspace(*endptr))
 		{
-		val.err_code = -1;
-		print_err("", "usage: ", stack, line, tok, " integer");
+			val.err_code = -1;
+			print_err("", "usage: ", stack, line, tok, " integer");
 		}
 		endptr++;
 	}
@@ -82,4 +82,19 @@ void pall(stack_t **stack, unsigned int line_num)
 		tmp = tmp->next;
 		i++;
 	}
+}
+
+/**
+ * pint - prints the last element of a list
+ * @line_num: line number
+ * @stack: stack of ints
+ */
+void pint(stack_t **stack, unsigned int line_num)
+{
+	(void)line_num;
+
+	if (*stack)
+		printf("%d\n", (*stack)->n);
+	else
+		print_err("", "can't pint, stack empty", stack, line_num, "", "");
 }
