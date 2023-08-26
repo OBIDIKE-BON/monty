@@ -44,6 +44,7 @@ typedef struct instruction_s
  * @data: function to handle the opcode
  * @err_code: function to handle the opcode
  * @buf: function to handle the opcode
+ * @chk: checker
  */
 typedef struct mData
 {
@@ -55,7 +56,7 @@ typedef struct mData
 } val_t;
 extern val_t val;
 
-void print_err(char *str, char *err, stack_t *stack, int ln, char *tok);
+void print_err(char *str, char *err, stack_t *stk, int ln, char *tok, char *t);
 void free_stack(stack_t *stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);

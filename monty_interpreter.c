@@ -11,17 +11,18 @@ val_t val;
 void pint(stack_t **stack, unsigned int line_num)
 {
 	stack_t *new;
+
 	if (val.chk != 0)
 	{
 		val.err_code = -1;
-		print_err("", "unknown instruction ", *stack, line_num, "push");
+		print_err("", "unknown instruction ", *stack, line_num, "push", "");
 	}
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		val.err_code = -1;
-		print_err("Error", "malloc failed", *stack, line_num, "");
+		print_err("Error", "malloc failed", *stack, line_num, "", "");
 	}
 	new->n = val.data;
 
@@ -47,17 +48,18 @@ void pint(stack_t **stack, unsigned int line_num)
 void push(stack_t **stack, unsigned int line_num)
 {
 	stack_t *new;
+
 	if (val.chk != 0)
 	{
 		val.err_code = -1;
-		print_err("", "usage:", *stack, line_num, "push integer");
+		print_err("", "usage:", *stack, line_num, "push integer", "");
 	}
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		val.err_code = -1;
-		print_err("Error", "malloc failed", *stack, line_num, "");
+		print_err("Error", "malloc failed", *stack, line_num, "", "");
 	}
 	new->n = val.data;
 
@@ -94,7 +96,7 @@ void exec_ops(char *buf, instruction_t ops[], int line_num, stack_t **stack)
 		tok2 = strtok(NULL, delim);
 		if (tok2 != NULL)
 		{
-			val.chk = safeStrToInt(tok2, line_num, tok1, *stack); /** edge case for 0 **/
+			val.chk = safeStrToInt(tok2, line_num, tok1, *stack);
 		}
 		/* looping through array of funcs */
 		i = 0;
@@ -110,7 +112,7 @@ void exec_ops(char *buf, instruction_t ops[], int line_num, stack_t **stack)
 		if (ops[i].opcode == NULL)
 		{
 			val.err_code = -1;
-			print_err("", "unknown instruction ", *stack, line_num, tok1);
+			print_err("", "unknown instruction", *stack, line_num, tok1, "");
 		}
 	}
 }
@@ -132,10 +134,8 @@ int main(int ac, char **av)
 	stack_t *stack = NULL;
 	instruction_t ops[] = {
 		{"push", push},
-		{"pall", pint},
-		{"pint", pall},
-		{"pop", pall},
-		{"swap", pall},
+		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}};
 
 	val.err_code = 0;
@@ -144,11 +144,11 @@ int main(int ac, char **av)
 	/* av[1] = "000.m";*/
 	/* ac = 2;*/
 	if (ac != 2)
-		print_err("USAGE", "monty file", stack, -1, "");
+		print_err("USAGE", "monty file", stack, -1, "", "");
 	fstream = fopen(av[1], "r");
 	if (!fstream)
 	{
-		print_err("Error", "Can't open file ", stack, -1, av[1]);
+		print_err("Error", "Can't open file", stack, -1, av[1], "");
 	}
 	val.fstream = fstream;
 	while (getline(&buf, &n, fstream) != -1)

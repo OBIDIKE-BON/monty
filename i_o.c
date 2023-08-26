@@ -19,13 +19,13 @@ int safeStrToInt(char *str, int line, char *tok, stack_t *stack)
 	if (errno == ERANGE || num > INT_MAX || num < INT_MIN)
 	{
 		val.err_code = -1;
-		print_err("", "unknown instruction ", stack, line, tok);
+		print_err("", "usage:", stack, line, tok, "number");
 	}
 
 	if (endptr == str)
 	{
 		val.err_code = -1;
-		print_err("", "unknown instruction ", stack, line, tok);
+		print_err("", "usage:", stack, line, tok, "number");
 	}
 	/* Check for trailing characters */
 	while (*endptr != '\0')
@@ -33,7 +33,7 @@ int safeStrToInt(char *str, int line, char *tok, stack_t *stack)
 		if (!isspace(*endptr))
 		{
 		val.err_code = -1;
-		print_err("", "unknown instruction ", stack, line, tok);
+		print_err("", "usage:", stack, line, tok, "number");
 		}
 		endptr++;
 	}
@@ -46,21 +46,22 @@ int safeStrToInt(char *str, int line, char *tok, stack_t *stack)
  * print_err - Print a string to the standard output stream.
  * @str: error header
  * @err: error message
- * @stack: stack to be freed before exiting
+ * @stk: stack to be freed before exiting
  * @ln: line number
  * @tok: token
+ * @t: extra
  */
-void print_err(char *str, char *err, stack_t *stack, int ln, char *tok)
+void print_err(char *str, char *err, stack_t *stk, int ln, char *tok, char *t)
 {
-	free_stack(stack);
+	free_stack(stk);
 	if (val.err_code == -1)
 		fclose(val.fstream);
 	if (val.buf)
 		free(val.buf);
 	if (ln > 0)
-		fprintf(stderr, "L%d: %s %s\n", ln, err, tok); /* Write the string to the standard error*/
+		fprintf(stderr, "L%d: %s %s %s\n", ln, err, tok, t);
 	else
-		fprintf(stderr, "%s: %s %s\n", str, err, tok); /* Write the string to the standard error*/
+		fprintf(stderr, "%s: %s %s\n", str, err, tok);
 	exit(EXIT_FAILURE);
 }
 
