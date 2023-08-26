@@ -77,3 +77,25 @@ void swap(stack_t **stack, unsigned int line_num)
 		print_err("", "can't swap, stack too short", *stack, line_num, "", "");
 	}
 }
+
+/**
+ * pop - pops top element of the stack
+ * @line_num: line number
+ * @stack: stack of ints
+ */
+void pop(stack_t **stack, unsigned int line_num)
+{
+	stack_t *tmp;
+
+	if (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+	else
+	{
+		val.err_code = -1;
+		print_err("", "can't pop an empty stack", *stack, line_num, "", "");
+	}
+}
