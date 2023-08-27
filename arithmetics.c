@@ -23,7 +23,7 @@ void sub(stack_t **stack, unsigned int line_num)
 }
 
 /**
- * div - divides second top element by top element of the stack
+ * _div - divides second top element by top element of the stack
  * @line_num: line number
  * @stack: stack of ints
  */
@@ -31,11 +31,10 @@ void _div(stack_t **stack, unsigned int line_num)
 {
 	int n;
 
-	if ((*stack)->n == 0)
-		print_err("", "division by zero", *stack, line_num, "", "");
-
 	if (*stack && (*stack)->next)
 	{
+		if ((*stack)->n == 0)
+			print_err("", "division by zero", *stack, line_num, "", "");
 		n = (*stack)->next->n / (*stack)->n;
 		(*stack)->next->n = n;
 		pop(stack, line_num);
@@ -78,11 +77,10 @@ void mod(stack_t **stack, unsigned int line_num)
 {
 	int n;
 
-	if ((*stack)->n == 0)
-		print_err("", "division by zero", *stack, line_num, "", "");
-
 	if (*stack && (*stack)->next)
 	{
+		if ((*stack)->n == 0)
+			print_err("", "division by zero", *stack, line_num, "", "");
 		n = (*stack)->next->n % (*stack)->n;
 		(*stack)->next->n = n;
 		pop(stack, line_num);
