@@ -28,7 +28,9 @@ void exec_ops(char *buf, instruction_t ops[], int line_num, stack_t **stack)
 
 	val.chk = -1;
 	tok1 = strtok(buf, delim);
-	if (tok1)
+	if (tok1 && tok1[0] == '#')
+		;
+	else if (tok1)	
 	{
 		tok2 = strtok(NULL, delim);
 		if (tok2 != NULL && strcmp(tok1, "push") == 0)
@@ -72,7 +74,7 @@ int main(int ac, char **av)
 	instruction_t ops[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add},  {"nop", nop},
 		{"sub", sub}, {"div", _div}, {"mul", mul}, {"mod", mod},
-		{"#", nop}, {"pstr", pstr}, {NULL, NULL}};
+		{"pstr", pstr}, {NULL, NULL}};
 
 	val.err_code = 0;
 	val.buf = NULL;
