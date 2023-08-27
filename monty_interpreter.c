@@ -71,7 +71,7 @@ int main(int ac, char **av)
 	stack_t *stack = NULL;
 	instruction_t ops[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add},  {"nop", nop},
-		{"sub", sub}, {"div", div}, {"div", div}, {NULL, NULL}};
+		{"sub", sub}, {"div", div}, {"mul", mul}, {"mod", mod}, {NULL, NULL}};
 
 	val.err_code = 0;
 	val.buf = NULL;
