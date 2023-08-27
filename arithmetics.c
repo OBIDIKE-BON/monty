@@ -88,6 +88,6 @@ void mod(stack_t **stack, unsigned int line_num)
 	else
 	{
 		val.err_code = -1;
-		print_err("", "can't div, stack too short", *stack, line_num, "", "");
+		print_err("", "can't mod, stack too short", *stack, line_num, "", "");
 	}
 }
