@@ -32,7 +32,9 @@ void pchar(stack_t **stack, unsigned int line_num)
 	if (*stack)
 	{
 		if ((*stack)->n > 0 && (*stack)->n < 128)
-			putchar((*stack)->n);
+		{
+			printf("%c\n", (*stack)->n);
+		}
 		else
 		{
 			val.err_code = -1;
