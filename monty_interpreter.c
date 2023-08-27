@@ -69,15 +69,9 @@ int main(int ac, char **av)
 	FILE *fstream;
 	int line_num = 0;
 	stack_t *stack = NULL;
-	instruction_t ops[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"nop", nop},
-		{NULL, NULL}};
+	instruction_t ops[] = {{"push", push}, {"pall", pall}, {"pint", pint},
+		{"pop", pop}, {"swap", swap}, {"add", add},  {"nop", nop},
+		{"sub", sub}, {NULL, NULL}};
 
 	val.err_code = 0;
 	val.buf = NULL;
