@@ -74,7 +74,7 @@ int main(int ac, char **av)
 	instruction_t ops[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add},  {"nop", nop},
 		{"sub", sub}, {"div", _div}, {"mul", mul}, {"mod", mod},
-		{"pchar", pchar}, {"pstr", pstr}, {NULL, NULL}};
+		{"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl}, {NULL, NULL}};
 
 	val.err_code = 0;
 	val.buf = NULL;
